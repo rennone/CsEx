@@ -16,7 +16,7 @@ namespace CsEx
         [ThreadStatic]
         private static Random local_;
 
-        private static Random Local
+        private static System.Random Local
         {
             get
             {

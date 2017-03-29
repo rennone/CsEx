@@ -68,52 +68,6 @@ namespace CsEx
         }
 
         /// <summary>
-        /// ランダムに一つを返す. 無い場合はデフォルト
-        /// </summary>
-        public static TSource RandomOrDefault<TSource>(this IEnumerable<TSource> self)
-        {
-            return self.IsNullOrEmpty() ? default(TSource) : self.Random();
-        }
-
-        /// <summary>
-        /// weightで指定した重みをもとに,ランダムに一つを返す. 無い場合はデフォルト
-        /// </summary>
-        public static TSource RandomOrDefault<TSource>(this IEnumerable<TSource> self, Func<TSource, int> weight)
-        {
-            if (self.IsNullOrEmpty())
-                return default(TSource);
-
-            return self.Random();
-        }
-
-        /// <summary>
-        /// ランダムに一つを返す. 無い場合は例外
-        /// </summary>
-        public static TSource Random<TSource>(this IEnumerable<TSource> self)
-        {
-            return self.ElementAt(SafeRandom.Range(0, self.Count()));
-        }
-
-        /// <summary>
-        /// weightで指定した重みをもとに, ランダムに一つを返す. 無い場合は例外
-        /// </summary>
-        public static TSource Random<TSource>(this IEnumerable<TSource> self, Func<TSource, int> weight)
-        {
-            return self.ElementAt(SafeRandom.DiceToss(self.Select(weight)));
-        }
-
-        // 2条件あるソート
-        public static void Sort2<TSource, TResult1, TResult2>(this List<TSource> self, Func<TSource, TResult1> selector1,
-            Func<TSource, TResult2> selector2) where TResult1 : IComparable where TResult2 : IComparable
-        {
-            self.Sort((x, y) =>
-            {
-                var result = selector1(x).CompareTo(selector1(y));
-                return result != 0 ? result : selector2(x).CompareTo(selector2(y));
-            });
-        }
-
-        /// <summary>
         /// リスト内のオブジェクトを, keySelectorにより, クラスタリングする
         /// keySelectorで指定した値をKey, valueSelectorで指定した値をValueとした Dictionary<Key, List<Value>>型として返す
         /// </summary>
