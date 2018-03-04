@@ -1,6 +1,4 @@
-﻿using CsEx.Operator;
-
-namespace CsEx
+﻿namespace CsEx
 {
     public static class ByteEx
     {
@@ -23,11 +21,6 @@ namespace CsEx
         public static byte RightShift(this byte self, byte amount, byte fill)
         {
             return (byte) ((self >> amount) | fill << amount);
-        }
-
-        public static T Shift<T>(this T self, T amount, T fill)
-        {
-            return Operator<T>.Or( Operator<T>.LeftShift(self, amount) , Operator<T>.RightShift(fill, amount));
         }
     }
 }
